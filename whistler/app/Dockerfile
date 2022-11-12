@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY src/ .
 
-CMD ["flask", "--app", "api", "--debug","run", "--host=0.0.0.0"]
+CMD ["flask", "--app", "api", "run", "--host=0.0.0.0"]
