@@ -1,10 +1,7 @@
-import logging
 import random
 
 import flask
 import mysql.connector
-
-logging.basicConfig(level=logging.WARNING)
 
 
 class DBManager:
@@ -46,7 +43,8 @@ conn = None
 
 
 @server.route("/fate")
-def getFate():
+def get_fate():
+    """get_fate() populates database and returns database query result."""
     global conn
     if not conn:
         conn = DBManager(password_file="/run/secrets/db-password")
@@ -62,6 +60,7 @@ def getFate():
 
 @server.route("/saber")
 def saber():
+    """saber() returns a random Saber's quote."""
     q = [
         "As you can see, I am your Saber class servant.",
         "I'd like some more, too.",
@@ -75,4 +74,5 @@ def saber():
 
 @server.route("/")
 def hello():
+    """hello() returns the default hello message."""
     return flask.jsonify({"response": "Hello this is fate!"})
